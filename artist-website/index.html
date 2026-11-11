@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio of a painter from India whose paintings are collected across Europe.">
+<title>Painter Portfolio Draft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a gallery wall — works hung on a cool limewash ground, each in a thin mat; catalogue labels in mono like museum wall cards. */
+:root{
+  --ground:#E8EBE4; --wall:#F5F6F1; --ink:#1C201C; --muted:#5A6359; --rule:#C8CDC1;
+  --ultra:#2B3B92; --ochre:#A97A1E; --ph-bg:#2B3B9214;
+  --f-display:"Gloock", "Georgia", serif;
+  --f-body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-label:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --s-1:.8125rem; --s0:1rem; --s1:1.25rem; --s2:1.75rem; --s3:2.5rem; --s4:clamp(2.75rem, 8vw, 5.5rem);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#131512; --wall:#1C1F1B; --ink:#E4E7DF; --muted:#9AA296; --rule:#323831;
+    --ultra:#A3AFF2; --ochre:#DDAE52; --ph-bg:#A3AFF21f; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#131512; --wall:#1C1F1B; --ink:#E4E7DF; --muted:#9AA296; --rule:#323831;
+  --ultra:#A3AFF2; --ochre:#DDAE52; --ph-bg:#A3AFF21f; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{color-scheme:light dark}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{
+  background:var(--ground); color:var(--ink); font-family:var(--f-body); font-size:var(--s0); line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{max-width:1180px; margin-inline:auto}
+a{color:var(--ultra)}
+:focus-visible{outline:2px solid var(--ultra); outline-offset:3px}
+h1,h2,h3{font-family:var(--f-display); font-weight:400; line-height:1.08; text-wrap:balance; margin:0}
+.label{font-family:var(--f-label); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.ph{background:var(--ph-bg); border-bottom:1.5px dashed var(--ultra); padding:0 .15em; border-radius:2px}
+
+/* draft note */
+.draft{margin-top:12px; display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; padding:10px 14px; border:1px dashed var(--ultra); border-radius:6px; font-size:var(--s-1); color:var(--muted)}
+.draft strong{color:var(--ultra); font-family:var(--f-label); font-weight:500; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase}
+
+/* header */
+header.site{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; padding-block:22px; border-bottom:1px solid var(--rule)}
+.mark{font-family:var(--f-display); font-size:var(--s1); text-decoration:none; color:var(--ink)}
+nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap}
+nav a{color:var(--ink); text-decoration:none; font-size:.95rem}
+nav a:hover{color:var(--ultra)}
+
+/* hero */
+.hero{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.1fr); gap:clamp(24px,5vw,64px); align-items:center; padding-block:clamp(36px,7vw,80px)}
+.hero h1{font-size:var(--s4); letter-spacing:-.01em}
+.hero .lede{font-size:var(--s1); max-width:30ch; margin:20px 0 0; color:var(--ink)}
+.hero .meta{margin-top:28px; display:flex; gap:28px; flex-wrap:wrap}
+.hero .meta div{display:flex; flex-direction:column; gap:2px}
+.hero .meta b{font-family:var(--f-display); font-weight:400; font-size:var(--s2); font-variant-numeric:tabular-nums}
+.cta{display:inline-flex; margin-top:30px; gap:12px; flex-wrap:wrap}
+.btn{font:inherit; font-weight:500; padding:11px 20px; border-radius:999px; border:1px solid var(--ultra); background:var(--ultra); color:var(--wall); text-decoration:none; cursor:pointer}
+.btn.ghost{background:transparent; color:var(--ultra)}
+.btn:hover{filter:brightness(1.08)}
+
+/* framed painting */
+.frame{background:var(--wall); padding:clamp(8px,1.4vw,14px); box-shadow:0 1px 0 var(--rule), 0 18px 40px -24px #0006; max-width:100%}
+.frame canvas{display:block; width:100%; height:auto}
+.hero figure{margin:0}
+.hero figcaption{margin-top:12px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+
+/* sections */
+section{padding-block:clamp(48px,8vw,96px); border-top:1px solid var(--rule)}
+.sec-head{display:flex; justify-content:space-between; align-items:end; gap:20px; flex-wrap:wrap; margin-bottom:32px}
+.sec-head h2{font-size:var(--s3)}
+.sec-head p{margin:8px 0 0; color:var(--muted); max-width:52ch}
+
+/* filters */
+.filters{display:flex; gap:8px; flex-wrap:wrap}
+.filters button{font:inherit; font-size:.88rem; padding:7px 14px; border-radius:999px; border:1px solid var(--rule); background:transparent; color:var(--ink); cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+
+/* works grid: masonry by columns */
+.works{columns:3 280px; column-gap:28px}
+.work{break-inside:avoid; margin:0 0 34px; cursor:pointer; display:block; width:100%; text-align:left; background:none; border:0; padding:0; color:inherit; font:inherit}
+.work .frame{transition:transform .35s ease}
+.work:hover .frame{transform:translateY(-3px)}
+.card{margin-top:12px; display:grid; gap:2px}
+.card h3{font-size:var(--s1)}
+.card .spec{font-family:var(--f-label); font-size:.76rem; color:var(--muted); font-variant-numeric:tabular-nums}
+.status{font-family:var(--f-label); font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; display:inline-flex; align-items:center; gap:6px; margin-top:4px}
+.status::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--ochre)}
+.status.avail::before{background:var(--ultra)}
+.status.sold{color:var(--muted)}
+.status.avail{color:var(--ultra)}
+.footnote{font-size:var(--s-1); color:var(--muted); margin-top:4px}
+
+/* collections */
+.coll{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:clamp(24px,5vw,64px)}
+.coll .big{font-family:var(--f-display); font-size:clamp(3.5rem,10vw,7rem); line-height:1; font-variant-numeric:tabular-nums}
+.cities{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill, minmax(190px,1fr)); gap:0 28px}
+.cities li{display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--rule)}
+.cities span:last-child{font-family:var(--f-label); font-size:.8rem; color:var(--muted); font-variant-numeric:tabular-nums}
+
+/* about */
+.about{display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(24px,5vw,64px)}
+.portrait{aspect-ratio:4/5; max-width:100%; background:var(--wall); border:1px dashed var(--rule); display:grid; place-items:center; text-align:center; padding:20px; color:var(--muted)}
+.about p{max-width:62ch; margin:0 0 16px}
+.about blockquote{margin:28px 0 0; padding-left:18px; border-left:2px solid var(--ochre); font-family:var(--f-display); font-size:var(--s1); line-height:1.4; max-width:40ch}
+
+/* exhibitions */
+.ex{list-style:none; margin:0; padding:0}
+.ex li{display:grid; grid-template-columns:5.5rem minmax(0,1fr) auto; gap:16px; padding:16px 0; border-bottom:1px solid var(--rule); align-items:baseline}
+.ex .yr{font-family:var(--f-label); font-variant-numeric:tabular-nums; color:var(--ultra)}
+.ex .place{color:var(--muted); font-size:.92rem}
+
+/* contact */
+.contact{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:clamp(24px,5vw,64px)}
+.mail{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:18px}
+.mail code{font-family:var(--f-label); font-size:1rem; user-select:all; background:var(--wall); padding:8px 12px; border-radius:6px; border:1px solid var(--rule)}
+.mail button{font:inherit; font-size:.85rem; padding:8px 14px; border-radius:6px; border:1px solid var(--rule); background:transparent; color:var(--ink); cursor:pointer}
+form{display:grid; gap:16px}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+label{display:grid; gap:6px; font-size:.88rem; font-weight:500}
+input,select,textarea{font:inherit; padding:11px 12px; border-radius:6px; border:1px solid var(--rule); background:var(--wall); color:var(--ink); width:100%}
+textarea{min-height:120px; resize:vertical}
+.formnote{font-size:var(--s-1); color:var(--muted); min-height:1.4em; margin:0}
+
+footer{padding-block:32px; border-top:1px solid var(--rule); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:var(--muted); font-size:var(--s-1)}
+
+/* lightbox */
+dialog{border:0; padding:0; background:var(--ground); color:var(--ink); max-width:min(1000px, calc(100vw - 32px)); width:100%; max-height:calc(100vh - 32px); overflow:auto; border-radius:4px}
+dialog::backdrop{background:#0b0d0bcc}
+.lb{display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:28px; padding:24px}
+.lb canvas{display:block; width:100%; height:auto}
+.lb h3{font-size:var(--s2); margin-top:6px}
+.lb dl{display:grid; grid-template-columns:auto 1fr; gap:8px 16px; margin:20px 0 0; font-size:.92rem}
+.lb dt{font-family:var(--f-label); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); padding-top:3px}
+.lb dd{margin:0}
+.close{position:sticky; top:0; float:right; margin:10px 10px 0 0; font:inherit; background:var(--wall); color:var(--ink); border:1px solid var(--rule); border-radius:999px; width:36px; height:36px; cursor:pointer; z-index:1}
+
+@media (max-width:820px){
+  .hero,.coll,.about,.contact,.lb{grid-template-columns:minmax(0,1fr)}
+  .hero figure{order:-1}
+  .row{grid-template-columns:1fr}
+  .ex li{grid-template-columns:4rem minmax(0,1fr)}
+  .ex .place{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){ .work .frame{transition:none} .work:hover .frame{transform:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="draft"><strong>Draft</strong> Highlighted text and the painted placeholders are stand-ins. Swap in his name, story, real photos of the paintings and catalogue details.</div>
+
+  <header class="site">
+    <a class="mark" href="#top"><span class="ph">Artist Name</span></a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#exhibitions">Exhibitions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="label">Painter · <span class="ph">City</span>, India</p>
+        <h1><span class="ph">Artist Name</span></h1>
+        <p class="lede">Paintings of light, land and people, made in India and collected across Europe.</p>
+        <div class="meta">
+          <div><b><span class="ph">300+</span></b><span class="label">Paintings made</span></div>
+          <div><b><span class="ph">9</span></b><span class="label">European countries</span></div>
+          <div><b><span class="ph">25</span></b><span class="label">Years painting</span></div>
+        </div>
+        <div class="cta">
+          <a class="btn" href="#works">View the works</a>
+          <a class="btn ghost" href="#contact">Enquire about a painting</a>
+        </div>
+      </div>
+      <figure>
+        <div class="frame"><canvas id="heroCanvas" width="900" height="675" aria-label="Featured painting placeholder"></canvas></div>
+        <figcaption><span><em>Monsoon Field, Evening</em>, 2019</span><span class="label">Oil on canvas · 120 × 90 cm</span></figcaption>
+      </figure>
+    </div>
+
+    <section id="works">
+      <div class="sec-head">
+        <div>
+          <h2>Selected works</h2>
+          <p>Tap any painting for its full catalogue entry. Sold works show where they now hang.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter works">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="Landscape" aria-pressed="false">Landscapes</button>
+          <button type="button" data-f="Figure" aria-pressed="false">Figures</button>
+          <button type="button" data-f="Abstract" aria-pressed="false">Abstract</button>
+          <button type="button" data-f="avail" aria-pressed="false">Available</button>
+        </div>
+      </div>
+      <div class="works" id="works-grid"></div>
+      <p class="footnote">Sample catalogue entries. Replace each with a real painting, its title, year, medium, size and collection.</p>
+    </section>
+
+    <section id="collections">
+      <div class="coll">
+        <div>
+          <p class="label">Where the work lives</p>
+          <div class="big"><span class="ph">140</span></div>
+          <p>paintings in private and corporate collections across Europe, placed through galleries, exhibitions and direct commissions.</p>
+          <p class="footnote">Example figures. Use his real counts, or drop the numbers and keep the cities.</p>
+        </div>
+        <ul class="cities">
+          <li><span>Paris, France</span><span>32 works</span></li>
+          <li><span>Berlin, Germany</span><span>21 works</span></li>
+          <li><span>Amsterdam, Netherlands</span><span>18 works</span></li>
+          <li><span>Antwerp, Belgium</span><span>14 works</span></li>
+          <li><span>Vienna, Austria</span><span>12 works</span></li>
+          <li><span>Lisbon, Portugal</span><span>11 works</span></li>
+          <li><span>Zürich, Switzerland</span><span>10 works</span></li>
+          <li><span>London, UK</span><span>9 works</span></li>
+          <li><span>Milan, Italy</span><span>8 works</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <div class="portrait"><div><p class="label">Portrait</p><p>A photo of him in the studio, ideally with a canvas in progress.</p></div></div>
+        <div>
+          <p class="label">About the artist</p>
+          <h2 style="font-size:var(--s3); margin:6px 0 22px">A studio in India, collectors in Europe</h2>
+          <p><span class="ph">Born in [year] in [town], he trained at [art school] and has painted full-time since [year].</span> Write two or three sentences here about how he started and what he paints.</p>
+          <p><span class="ph">His first European show was at [gallery] in [city] in [year].</span> Since then his paintings have been bought by collectors in France, Germany, the Netherlands and beyond. Say what draws European buyers to his work: the colour, the subjects, the technique.</p>
+          <p><span class="ph">He works mainly in oil and acrylic on large canvases, and accepts a small number of commissions each year.</span></p>
+          <blockquote><span class="ph">A short line in his own words about why he paints.</span></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="exhibitions">
+      <div class="sec-head"><div><h2>Exhibitions</h2><p>Most recent first. Example rows to replace with his real history.</p></div></div>
+      <ul class="ex">
+        <li><span class="yr">2025</span><span>Solo exhibition, <span class="ph">title of show</span></span><span class="place">Galerie, Paris</span></li>
+        <li><span class="yr">2023</span><span>Group show, contemporary Indian painting</span><span class="place">Kunstraum, Berlin</span></li>
+        <li><span class="yr">2022</span><span>Art fair booth with <span class="ph">gallery name</span></span><span class="place">Amsterdam</span></li>
+        <li><span class="yr">2019</span><span>Solo exhibition, <span class="ph">title of show</span></span><span class="place">Antwerp</span></li>
+        <li><span class="yr">2016</span><span>First European group show</span><span class="place">Vienna</span></li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <div>
+          <p class="label">Purchases, commissions, exhibitions</p>
+          <h2 style="font-size:var(--s3); margin-top:6px">Enquire about a painting</h2>
+          <p style="max-width:44ch; color:var(--muted)">Tell him which work you're interested in, or describe a commission. Shipping to Europe is arranged with each sale.</p>
+          <div class="mail">
+            <code id="email">studio@example.com</code>
+            <button type="button" id="copy">Copy email</button>
+          </div>
+          <p class="footnote" style="margin-top:10px">Replace with his real email or WhatsApp number.</p>
+        </div>
+        <form id="enquiry" novalidate>
+          <div class="row">
+            <label for="f-name">Your name<input id="f-name" name="name" autocomplete="name" value="Claire Martin"></label>
+            <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" value="claire@example.fr"></label>
+          </div>
+          <label for="f-type">I'm interested in
+            <select id="f-type" name="type">
+              <option>Buying an available painting</option>
+              <option>Commissioning a new work</option>
+              <option>Exhibiting his work</option>
+              <option>Press or interview</option>
+            </select>
+          </label>
+          <label for="f-msg">Message<textarea id="f-msg" name="message">Hello, I saw "Indigo Rhythm" and would like to know the price with shipping to Lyon.</textarea></label>
+          <div><button class="btn" type="submit">Send enquiry</button></div>
+          <p class="formnote" id="formnote" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 <span class="ph">Artist Name</span>. All paintings and images are the artist's own.</span>
+    <span>Studio in <span class="ph">City</span>, India</span>
+  </footer>
+</div>
+
+<dialog id="lightbox" aria-label="Painting details">
+  <button class="close" type="button" id="lbClose" aria-label="Close">✕</button>
+  <div class="lb">
+    <div class="frame"><canvas id="lbCanvas" width="1000" height="750"></canvas></div>
+    <div>
+      <p class="label" id="lbKind"></p>
+      <h3 id="lbTitle"></h3>
+      <dl>
+        <dt>Year</dt><dd id="lbYear"></dd>
+        <dt>Medium</dt><dd id="lbMedium"></dd>
+        <dt>Size</dt><dd id="lbSize"></dd>
+        <dt>Status</dt><dd id="lbStatus"></dd>
+      </dl>
+      <p style="margin-top:20px; color:var(--muted); font-size:.92rem" id="lbNote"></p>
+      <a class="btn" href="#contact" id="lbAsk" style="margin-top:8px; display:inline-flex">Enquire</a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const WORKS = [
+  {t:"Monsoon Field, Evening", y:2019, m:"Oil on canvas", w:120, h:90, k:"Landscape", s:"Private collection, Antwerp", seed:11, pal:["#3b4a3a","#6f8a55","#c9a34a","#2c3550","#d8c9a0"]},
+  {t:"Two Women at the Well", y:2018, m:"Acrylic on canvas", w:100, h:100, k:"Figure", s:"Private collection, Paris", seed:23, pal:["#7a2e1f","#d0703a","#e8c27a","#2f4a6b","#f1e3c6"]},
+  {t:"Red Earth Study III", y:2021, m:"Oil on linen", w:60, h:80, k:"Abstract", s:"Private collection, Berlin", seed:37, pal:["#5e1a12","#b4432a","#e18a4a","#1f1c1a","#d9b98c"]},
+  {t:"Harbour at First Light", y:2020, m:"Oil on canvas", w:150, h:100, k:"Landscape", s:"Private collection, Lisbon", seed:41, pal:["#9fb4c4","#e7d7b8","#4f6f8a","#d99b6b","#22344a"]},
+  {t:"The Flute Player", y:2017, m:"Oil on canvas", w:90, h:120, k:"Figure", s:"Private collection, Vienna", seed:53, pal:["#1e2a4a","#3e5a8a","#d9a441","#8a3b2c","#e9dcc0"]},
+  {t:"Indigo Rhythm", y:2022, m:"Acrylic on canvas", w:80, h:80, k:"Abstract", s:null, seed:67, pal:["#1b2a6b","#3d56b0","#9fb0e8","#e6d6a8","#0f1530"]},
+  {t:"Hills After Rain", y:2023, m:"Oil on canvas", w:140, h:90, k:"Landscape", s:null, seed:71, pal:["#2f4a33","#5f8a4a","#a6c27a","#d8dfd0","#3a4a5e"]},
+  {t:"Market Morning", y:2016, m:"Acrylic on board", w:70, h:90, k:"Figure", s:"Private collection, Amsterdam", seed:83, pal:["#c75a2a","#e9b44c","#3a6e5e","#f3e6cc","#5a2a3a"]}
+];
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+function stroke(ctx,x,y,len,th,ang,col,al){
+  ctx.save(); ctx.translate(x,y); ctx.rotate(ang); ctx.globalAlpha=al;
+  ctx.strokeStyle=col; ctx.lineWidth=th; ctx.lineCap="round";
+  ctx.beginPath(); ctx.moveTo(-len/2,0); ctx.quadraticCurveTo(0,th*.4,len/2,0); ctx.stroke(); ctx.restore();
+}
+
+function paint(cv, w){
+  const W=cv.width, H=Math.round(W*w.h/w.w); cv.height=H;
+  const c=cv.getContext("2d"), r=rng(w.seed), P=w.pal, pick=()=>P[Math.floor(r()*P.length)];
+  c.fillStyle=P[0]; c.fillRect(0,0,W,H);
+  const u=W/600;
+  if(w.k==="Landscape"){
+    const bands=[[0,.45,P[4]],[.38,.62,P[3]],[.55,.8,P[1]],[.75,1,P[0]]];
+    bands.forEach(([a,b,col])=>{for(let i=0;i<260;i++){stroke(c,r()*W,(a+r()*(b-a))*H,(40+r()*90)*u,(8+r()*14)*u,(r()-.5)*.12,col,.55)}});
+    c.globalAlpha=.85; c.fillStyle=P[2]; c.beginPath(); c.arc(W*(.25+r()*.5),H*.3,H*.07,0,7); c.fill();
+  } else if(w.k==="Figure"){
+    for(let i=0;i<500;i++) stroke(c,r()*W,r()*H,(30+r()*70)*u,(8+r()*12)*u,(r()-.5)*.6,P[(i%2)?0:4],.35);
+    const n=1+Math.floor(r()*2);
+    for(let f=0;f<n;f++){
+      const cx=W*(n===1?.5:(.33+f*.34)), top=H*.22, bot=H*.92, col=P[1+f];
+      for(let i=0;i<220;i++){const yy=top+r()*(bot-top), spread=W*.07*(.5+(yy-top)/(bot-top)); stroke(c,cx+(r()-.5)*spread*2,yy,(18+r()*30)*u,(6+r()*8)*u,Math.PI/2+(r()-.5)*.4,col,.6)}
+      c.globalAlpha=.9; c.fillStyle=P[2]; c.beginPath(); c.ellipse(cx,top-H*.03,W*.04,H*.055,0,0,7); c.fill();
+    }
+  } else {
+    for(let b=0;b<7;b++){c.save(); c.globalAlpha=.75; c.fillStyle=pick(); c.translate(r()*W,r()*H); c.rotate((r()-.5)*.8); c.fillRect(-W*.2,-H*.08,W*(.2+r()*.3),H*(.08+r()*.18)); c.restore();}
+    for(let i=0;i<600;i++) stroke(c,r()*W,r()*H,(20+r()*80)*u,(4+r()*12)*u,r()*Math.PI,pick(),.4);
+  }
+  for(let i=0;i<500;i++) stroke(c,r()*W,r()*H,(8+r()*24)*u,(2+r()*4)*u,(r()-.5)*1.2,pick(),.25);
+  c.globalAlpha=1;
+}
+
+const grid=document.getElementById("works-grid");
+WORKS.forEach((w,i)=>{
+  const b=document.createElement("button"); b.className="work"; b.type="button"; b.dataset.k=w.k; b.dataset.avail=w.s?"0":"1";
+  b.setAttribute("aria-label", w.t+", "+w.y);
+  const cv=document.createElement("canvas"); cv.width=600;
+  const fr=document.createElement("div"); fr.className="frame"; fr.appendChild(cv);
+  const card=document.createElement("div"); card.className="card";
+  card.innerHTML=`<h3>${w.t}</h3><span class="spec">${w.y} · ${w.m} · ${w.w} × ${w.h} cm</span><span class="status ${w.s?"sold":"avail"}">${w.s?"Sold · "+w.s.replace("Private collection, ",""):"Available"}</span>`;
+  b.append(fr,card); grid.appendChild(b); paint(cv,w);
+  b.addEventListener("click",()=>openLB(w));
+});
+paint(document.getElementById("heroCanvas"), WORKS[0]);
+
+document.querySelectorAll(".filters button").forEach(btn=>btn.addEventListener("click",()=>{
+  document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed", x===btn?"true":"false"));
+  const f=btn.dataset.f;
+  grid.querySelectorAll(".work").forEach(el=>{el.hidden=!(f==="all"||(f==="avail"?el.dataset.avail==="1":el.dataset.k===f))});
+}));
+
+const lb=document.getElementById("lightbox");
+function openLB(w){
+  paint(document.getElementById("lbCanvas"), w);
+  lbKind.textContent=w.k; lbTitle.textContent=w.t; lbYear.textContent=w.y; lbMedium.textContent=w.m;
+  lbSize.textContent=`${w.w} × ${w.h} cm`;
+  lbStatus.textContent=w.s?("Sold. "+w.s):"Available";
+  lbNote.textContent=w.s?"This painting has found its home. Similar works may be available, or he can discuss a commission.":"Available to buy. Ask for the price and shipping to your country.";
+  lbAsk.textContent=w.s?"Ask about similar work":"Enquire about this painting";
+  if(lb.showModal) lb.showModal(); else lb.setAttribute("open","");
+}
+lbClose.addEventListener("click",()=>lb.close());
+lbAsk.addEventListener("click",()=>lb.close());
+lb.addEventListener("click",e=>{if(e.target===lb) lb.close()});
+
+copy.addEventListener("click",()=>{
+  const t=email.textContent;
+  const done=()=>{copy.textContent="Copied"; setTimeout(()=>copy.textContent="Copy email",1800)};
+  try{ navigator.clipboard.writeText(t).then(done).catch(sel) }catch(e){ sel() }
+  function sel(){const r=document.createRange(); r.selectNodeContents(email); const s=getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent="Selected, press Ctrl+C"}
+});
+
+document.getElementById("enquiry").addEventListener("submit",e=>{
+  e.preventDefault();
+  formnote.textContent="This draft form isn't connected yet. When the site goes live it can deliver enquiries to his email.";
+});
+</script>
+</body>
+</html>
