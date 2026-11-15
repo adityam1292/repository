@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Ajay Dhandre. Selected works, résumé, texts and contact.">
+<meta name="description" content="Ajay Dhandre. Works 2004–2025, résumé, texts and contact.">
 <title>Ajay Dhandre</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,7 +13,7 @@
   <header class="head">
     <a class="name" href="#home" data-artist></a>
     <nav class="menu" aria-label="Main">
-      <a href="#works">Selected Works</a>
+      <a href="#works">Works</a>
       <a href="#about">About</a>
       <a href="#texts">Texts</a>
       <a href="#contact">Contact</a>
@@ -25,18 +25,9 @@
       <div class="home" id="home-list"></div>
     </section>
 
-    <section class="view" id="v-works" aria-label="Selected works" hidden>
-      <div class="years" id="years" role="group" aria-label="Years"></div>
-      <div class="stage">
-        <img id="work-img" alt="">
-        <button class="hit prev" type="button" id="hit-prev" aria-label="Previous work"></button>
-        <button class="hit next" type="button" id="hit-next" aria-label="Next work"></button>
-      </div>
-      <div class="cap">
-        <p class="meta" id="work-meta"></p>
-        <p class="step"><button type="button" class="link" id="btn-prev">Previous</button><span id="work-count"></span><button type="button" class="link" id="btn-next">Next</button></p>
-      </div>
-      <div class="thumbs" id="thumbs" aria-label="All selected works"></div>
+    <section class="view" id="v-works" aria-label="Works" hidden>
+      <div class="years" id="years" role="group" aria-label="Jump to a year"></div>
+      <div id="chapters"></div>
     </section>
 
     <section class="view" id="v-about" aria-label="About" hidden>
@@ -72,6 +63,20 @@
     </section>
   </main>
 </div>
+
+<dialog class="lb" id="lb" aria-label="Artwork viewer">
+  <div class="lb-inner">
+    <div class="lb-bar">
+      <span id="lb-chapter"></span>
+      <button class="link" type="button" id="lb-close">Close</button>
+    </div>
+    <div class="lb-stage"><img id="lb-img" alt=""></div>
+    <div class="lb-cap">
+      <p class="meta" id="lb-meta"></p>
+      <p class="step"><button type="button" class="link" id="lb-prev">Previous</button><span id="lb-count"></span><button type="button" class="link" id="lb-next">Next</button></p>
+    </div>
+  </div>
+</dialog>
 <!--/CONTENT-->
 <script src="data/site.js"></script>
 <script src="data/works.js"></script>

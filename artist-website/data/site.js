@@ -5,30 +5,24 @@ window.SITE = {
   // Home page: installation views, shown large one under another (ids from data/works.js).
   home: ["2015-2020-022", "2015-2020-020", "2015-2020-019", "2015-2020-021"],
 
-  // Selected Works page: the works shown in the slideshow, in this order (oldest first).
-  // To show a work, add its id here. Every work in data/works.js stays available.
-  selectedWorks: [
-    "2004-011", "2004-003", "2004-016",
-    "2005-001", "2005-005", "2005-009", "2005-014", "2005-019",
-    "2006-002", "2006-006", "2006-010", "2006-015", "2006-020",
-    "2007-002", "2007-005", "2007-009", "2007-013", "2007-017", "2007-020",
-    "2008-2010-001", "2008-2010-004", "2008-2010-007", "2008-2010-010", "2008-2010-013",
-    "2011-2014-002", "2011-2014-006", "2011-2014-010", "2011-2014-015", "2011-2014-022", "2011-2014-028",
-    "2011-2014-036", "2011-2014-044", "2011-2014-050", "2011-2014-056", "2011-2014-061",
-    "2011-2014-068", "2011-2014-072", "2011-2014-077",
-    "2015-2020-001", "2015-2020-003", "2015-2020-005", "2015-2020-008", "2015-2020-010",
-    "2015-2020-012", "2015-2020-014",
-    "2015-2020-024", "2015-2020-027", "2015-2020-031",
-    "2021-2025-001", "2021-2025-003", "2021-2025-004", "2021-2025-005", "2021-2025-006", "2021-2025-007",
-    "2024-2026-003", "2024-2026-008", "2024-2026-013", "2024-2026-019", "2024-2026-024", "2024-2026-029",
-    "2024-2026-035", "2024-2026-040", "2024-2026-045", "2024-2026-050", "2024-2026-055"
-  ],
-
-  // Year links above the slideshow. Each jumps to the first selected work of that period.
+  // The works are shown in year chapters. "name" and "intro" appear above each chapter's works.
   periods: [
-    { id: "2004", label: "2004" }, { id: "2005", label: "2005" }, { id: "2006", label: "2006" },
-    { id: "2007", label: "2007" }, { id: "2008-2010", label: "2008–2010" }, { id: "2011-2014", label: "2011–2014" },
-    { id: "2015-2020", label: "2015–2020" }, { id: "2021-2026", label: "2021–2026" }
+    { id: "2004", label: "2004", name: "Line drawings",
+      intro: "The earliest sheets in the archive. Small outlined forms sit in rows, like lines of an invented script." },
+    { id: "2005", label: "2005", name: "Small watercolours",
+      intro: "The forms gain colour and volume. Each sheet holds a single floating craft built from patterned parts." },
+    { id: "2006", label: "2006", name: "Craft and habitats",
+      intro: "Larger watercolours, mostly 30 × 20 inches. The craft begin to read as buildings and places to live." },
+    { id: "2007", label: "2007", name: "First solo show",
+      intro: "The year of ‘Hyper-Bio-Nano Materialism’ at Max Mueller Bhavan, Mumbai. Creatures and machines merge, and Michelangelo’s David and Creation of Adam are reworked as androids." },
+    { id: "2008-2010", label: "2008–2010", name: "Bio-craft and cyber villages",
+      intro: "Bio-aircraft, cyber villages and cybernetic devices in watercolour and pencil. In 2009 his work was part of Sotheby’s Indian Art auction in London." },
+    { id: "2011-2014", label: "2011–2014", name: "Watercolour, drawing, sculpture",
+      intro: "After a residency at Camac in France in 2011, the work spreads across watercolour, a large body of pencil drawings, and sculpture." },
+    { id: "2015-2020", label: "2015–2020", name: "The Creator Series, The Found & the Made",
+      intro: "‘The Creator Series’ was shown at Art Musings, Mumbai, in 2017. ‘The Found & the Made’ (2018) lays out natural and man-made objects on canvas. A set of small drawings followed in 2020." },
+    { id: "2021-2025", label: "2021–2025", name: "Oil on canvas",
+      intro: "Large oil paintings, up to 96 inches across, alongside dense pencil drawings of hybrid organisms." }
   ],
 
   // About page: a short biography on the left, the résumé on the right.

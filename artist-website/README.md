@@ -1,13 +1,14 @@
 # Ajay Dhandre — Artist Website
 
-Website for the artist Ajay Dhandre. It follows the conventions of professional artist websites
-(as set out in Contemporary Art Issue's tutorial "How To Create A Professional Artist Website"):
-a plain white page, small serif text, the artist's name as the title, and a short menu.
+Website for the artist Ajay Dhandre. It combines the professional artist-site conventions
+(from Contemporary Art Issue's tutorial "How To Create A Professional Artist Website") with
+the light beige, year-by-year presentation of the first draft: the artist's name as the title,
+a short menu, small serif text, and the works browsed in year chapters.
 
 | Page | What it shows |
 | --- | --- |
 | Home (click the name) | Installation views, large, with no text |
-| Selected Works | One work at a time, oldest to newest, with a caption and thumbnails |
+| Works | Year chapters from 2004 to 2025, each with a short introduction and a grid of works; click any work to view it full screen |
 | About | Short biography and the résumé as a factual list |
 | Texts | The artist's statement and writing on the work |
 | Contact | Email address, newsletter link, location |
@@ -25,8 +26,8 @@ artist-website/
 ├── css/style.css       Design. Colours, font and sizes are variables at the top of the file
 ├── js/app.js           Builds the pages from the two data files
 ├── data/
-│   ├── site.js         All text, plus which works appear on Home and Selected Works
-│   └── works.js        One line per artwork (278 works, 2004–2026)
+│   ├── site.js         All text: chapters, biography, résumé, texts, contact
+│   └── works.js        One line per artwork (222 works, 2004–2025)
 ├── images/
 │   ├── works/          Artwork photos (max 1300 px on the long side)
 │   └── about/          Portrait
@@ -38,11 +39,7 @@ artist-website/
 ## How to update the site
 
 **Change the colours or font.** Edit the variables at the top of `css/style.css`.
-`--bg` is the page background and `--ink` the text colour.
-
-**Choose which works are shown.** `selectedWorks` in `data/site.js` lists the ids shown on the
-Selected Works page, in order. All 278 works stay in `data/works.js`; add or remove ids to change the selection.
-`home` lists the installation views on the home page.
+`--bg` is the page background (currently light beige; `#FFFFFF` for plain white) and `--ink` the text colour.
 
 **Change any text.** Edit `data/site.js`. Nothing else needs to change.
 
@@ -52,17 +49,18 @@ Selected Works page, in order. All 278 works stay in `data/works.js`; add or rem
 2. Add one line to `data/works.js`:
 
    ```js
-   {"id": "2027-001", "period": "2021-2026", "year": 2027, "category": "Drawings",
-    "medium": "Drawing on paper", "size": "30 × 20 in", "title": "Optional title",
-    "src": "images/works/2027-001.jpg", "w": 1300, "h": 900},
+   {"id": "2021-2025-008", "period": "2021-2025", "year": 2025, "category": "Oil on canvas",
+    "medium": "Oil on canvas", "size": "72 × 60 in", "title": "Optional title",
+    "src": "images/works/2021-2025-008.jpg", "w": 1300, "h": 900},
    ```
 
    `period` must match an `id` under `periods` in `data/site.js`. `title`, `series` and `size` are optional.
-3. Add the new id to `selectedWorks` in `data/site.js` to show it.
-
    The caption is written as: *Title*, year. Medium | dimensions.
 
-**Add a show to the CV.** Add `[year, "text"]` to the right list under `cv` in `data/site.js`.
+**Add a chapter.** Add an entry to `periods` in `data/site.js` with an `id`, `label`, `name` and `intro`,
+then give new works that `period`.
+
+**Add a show to the résumé.** Add `[year, "text"]` to the right list under `cv` in `data/site.js`.
 
 ## Preview locally
 
@@ -72,9 +70,9 @@ Open `index.html` in a browser. Nothing needs to be installed.
 
 - Spelling of the surname: the documents say **Dhandre**, the source folder was named "Dhandare".
 - MFA college: one document says **CISFA**, another **CISPA**.
-- Individual titles, mediums and sizes for most works. Many photos already carry a printed caption;
+- Titles, mediums and sizes for individual works. Many photos already carry a printed caption;
   where the file name gave a size it is shown, otherwise only medium and year are listed.
 - Whether to show phone numbers. Only the email address is published for now.
-- Titles for the works, so captions can read "Title, year. Medium | dimensions".
 - Galleries that represent him, to list on the Contact page, and his Instagram handle.
-- Studio 9 pottery was removed from this site, since an artist website shows one practice. It could have its own site.
+- The 2024–2026 drawings (the "panting" folder) and the Studio 9 pottery are not on the site,
+  per the current direction. Both can be added back from the source folder at any time.
