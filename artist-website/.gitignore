@@ -1,0 +1,9 @@
+# OS and editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Original full-size photos (keep only the resized web versions in images/)
+originals/
