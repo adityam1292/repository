@@ -1,7 +1,18 @@
 # Ajay Dhandre — Artist Website
 
-Portfolio website for the artist Ajay Dhandre. It shows his work from 2004 to today as a timeline,
-with his biography, statement, critics' writing, CV, Studio 9 pottery and contact details.
+Website for the artist Ajay Dhandre. It follows the conventions of professional artist websites
+(as set out in Contemporary Art Issue's tutorial "How To Create A Professional Artist Website"):
+a plain white page, small serif text, the artist's name as the title, and a short menu.
+
+| Page | What it shows |
+| --- | --- |
+| Home (click the name) | Installation views, large, with no text |
+| Selected Works | One work at a time, oldest to newest, with a caption and thumbnails |
+| About | Short biography and the résumé as a factual list |
+| Texts | The artist's statement and writing on the work |
+| Contact | Email address, newsletter link, location |
+
+There is no footer, no contact form, no animation and no prices.
 
 It is a static site with no build step, so it can be hosted for free on Cloudflare Pages
 (see `docs/DEPLOYMENT.md`).
@@ -10,16 +21,15 @@ It is a static site with no build step, so it can be hosted for free on Cloudfla
 
 ```
 artist-website/
-├── index.html          Page skeleton (sections and layout only, no content)
-├── css/style.css       Design. Colours and fonts are variables at the top of the file
-├── js/app.js           Builds the page from the two data files
+├── index.html          Page skeleton (the five pages, switched by the menu)
+├── css/style.css       Design. Colours, font and sizes are variables at the top of the file
+├── js/app.js           Builds the pages from the two data files
 ├── data/
-│   ├── site.js         All text: bio, statement, timeline chapters, CV, Studio 9, contact
-│   └── works.js        One line per artwork
+│   ├── site.js         All text, plus which works appear on Home and Selected Works
+│   └── works.js        One line per artwork (278 works, 2004–2026)
 ├── images/
 │   ├── works/          Artwork photos (max 1300 px on the long side)
-│   ├── about/          Portrait and studio
-│   └── studio9/        Pottery
+│   └── about/          Portrait
 └── docs/
     ├── DEPLOYMENT.md       How to put the site live on the artist's domain
     └── image-sources.json  Which original file each web image was made from
@@ -27,8 +37,12 @@ artist-website/
 
 ## How to update the site
 
-**Change the colours.** Edit the variables at the top of `css/style.css`.
-`--paper` is the page background, `--accent` is the highlight colour.
+**Change the colours or font.** Edit the variables at the top of `css/style.css`.
+`--bg` is the page background and `--ink` the text colour.
+
+**Choose which works are shown.** `selectedWorks` in `data/site.js` lists the ids shown on the
+Selected Works page, in order. All 278 works stay in `data/works.js`; add or remove ids to change the selection.
+`home` lists the installation views on the home page.
 
 **Change any text.** Edit `data/site.js`. Nothing else needs to change.
 
@@ -43,11 +57,10 @@ artist-website/
     "src": "images/works/2027-001.jpg", "w": 1300, "h": 900},
    ```
 
-   `period` must match the `id` of a chapter in `data/site.js`. `title`, `series` and `size` are optional.
-   `category` decides which filter chip the work appears under; a new category creates a new chip automatically.
+   `period` must match an `id` under `periods` in `data/site.js`. `title`, `series` and `size` are optional.
+3. Add the new id to `selectedWorks` in `data/site.js` to show it.
 
-**Add a timeline chapter.** Add an entry to `periods` in `data/site.js` with an `id`, `label`, `from`, `to`,
-`name` and `intro`. CV entries dated between `from` and `to` appear beside it automatically.
+   The caption is written as: *Title*, year. Medium | dimensions.
 
 **Add a show to the CV.** Add `[year, "text"]` to the right list under `cv` in `data/site.js`.
 
@@ -62,4 +75,6 @@ Open `index.html` in a browser. Nothing needs to be installed.
 - Individual titles, mediums and sizes for most works. Many photos already carry a printed caption;
   where the file name gave a size it is shown, otherwise only medium and year are listed.
 - Whether to show phone numbers. Only the email address is published for now.
-- Whether the Studio 9 section should stay on this site or get its own page.
+- Titles for the works, so captions can read "Title, year. Medium | dimensions".
+- Galleries that represent him, to list on the Contact page, and his Instagram handle.
+- Studio 9 pottery was removed from this site, since an artist website shows one practice. It could have its own site.
