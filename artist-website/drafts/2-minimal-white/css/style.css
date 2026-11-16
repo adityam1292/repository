@@ -1,0 +1,86 @@
+/* Layout: plain and quiet, in the manner of gallery artist pages. White ground, small serif text,
+   the work shown large. Change the values below to restyle the whole site. */
+:root {
+  --bg: #FFFFFF;          /* page background. For the earlier light beige use #EFE6D6 */
+  --ink: #111111;         /* text */
+  --muted: #6E6E6E;       /* secondary text */
+  --rule: #DCDCDC;        /* hairlines */
+  --font: "Times New Roman", Times, "Liberation Serif", serif;
+  --text: .9rem;          /* body text size */
+  --title: 1.5rem;        /* artist name */
+  --nav: 1.1rem;          /* menu */
+  --maxw: 1600px;
+  --gutter-l: max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--text); line-height: 1.55; }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; text-decoration: none; }
+a:hover, .link:hover { text-decoration: underline; }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+h1, h2, h3, p, ul { margin: 0; padding: 0; font-weight: normal; font-size: inherit; }
+ul { list-style: none; }
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* Header: name on the left, menu on the right */
+.head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 28px; flex-wrap: wrap; padding-block: 22px 26px; }
+.name { font-size: var(--title); }
+.menu { display: flex; gap: 4px 26px; flex-wrap: wrap; font-size: var(--nav); }
+.menu a[aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; }
+
+.view { padding-bottom: 56px; }
+
+/* Home: installation views, one under another */
+.home { display: grid; gap: 24px; }
+.home img { width: 100%; height: auto; }
+
+/* Selected works: one work at a time, caption, thumbnails */
+.years { display: flex; gap: 2px 18px; flex-wrap: wrap; color: var(--muted); margin-bottom: 14px; }
+.years button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.stage { position: relative; height: min(72vh, 900px); min-height: 280px; }
+.stage img { position: absolute; inset: 0; margin: auto; max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.stage .hit { position: absolute; top: 0; bottom: 0; width: 50%; }
+.stage .hit.prev { left: 0; cursor: w-resize; }
+.stage .hit.next { right: 0; cursor: e-resize; }
+.cap { display: flex; justify-content: space-between; align-items: baseline; gap: 6px 24px; flex-wrap: wrap; margin-top: 14px; }
+.cap .meta { min-width: 0; }
+.cap .step { display: flex; gap: 18px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cap .step button { color: var(--ink); }
+.thumbs { display: flex; gap: 8px; overflow-x: auto; margin-top: 22px; padding-bottom: 8px; scrollbar-width: thin; }
+.thumbs button { flex: none; height: 64px; opacity: .45; }
+.thumbs button[aria-current="true"], .thumbs button:hover { opacity: 1; }
+.thumbs img { height: 64px; width: auto; }
+
+/* About: biography left, résumé right */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 40px clamp(32px, 6vw, 120px); align-items: start; }
+.bio { display: grid; gap: 1em; max-width: 52ch; }
+.resume { display: grid; gap: 1.6em; }
+.resume h2 { margin-bottom: .35em; }
+.resume li { display: grid; grid-template-columns: 3.2em minmax(0, 1fr); gap: 0 1em; }
+.resume .y { font-variant-numeric: tabular-nums; }
+
+/* Texts */
+.texts { display: grid; gap: 2.6em; max-width: 68ch; }
+.texts h2 { margin-bottom: .6em; }
+.texts .body { display: grid; gap: 1em; }
+.texts .by { color: var(--muted); margin-top: .8em; }
+.texts li + li { margin-top: 1.4em; }
+.texts .excerpt { margin-top: .4em; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 32px clamp(32px, 6vw, 120px); align-items: start; }
+.contact .lines { display: grid; gap: .3em; }
+.contact .email { user-select: all; overflow-wrap: anywhere; }
+.contact .gap { margin-top: 1em; }
+.contact img { width: 100%; height: auto; }
+
+@media (max-width: 760px) {
+  .about, .contact { grid-template-columns: minmax(0, 1fr); }
+  .stage { height: 58vh; }
+  .head { padding-block: 16px 20px; }
+}
