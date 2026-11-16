@@ -25,6 +25,62 @@ window.SITE = {
       intro: "Large oil paintings, up to 96 inches across, alongside dense pencil drawings of hybrid organisms." }
   ],
 
+  // Exhibitions, newest first. Used by the exhibition-led drafts (4, 5 and 6).
+  // "images" are installation views in images/exhibitions/. "works" lists artwork ids from data/works.js.
+  exhibitions: [
+    { id: "ephemeral", year: 2026, kind: "Two-person exhibition", title: "Ephemeral", venue: "Art Musings", city: "Mumbai", dates: "June 2026",
+      text: "A two-person exhibition at Art Musings, the Mumbai gallery that has shown his work since 2011." },
+    { id: "showkeen", year: 2025, kind: "Group exhibition", title: "Showkeen", venue: "Nehru Centre", city: "Mumbai",
+      text: "An exhibition of modern and contemporary Indian art.", credit: "Presented by AstaGuru" },
+    { id: "the-book-project", year: 2025, kind: "Group exhibition", title: "The Book Project", venue: "Shridharani Gallery", city: "New Delhi",
+      credit: "Curated by Shijo Jacob. Presented by Apparao Galleries" },
+    { id: "cosmic-duality", year: 2024, kind: "Group exhibition", title: "Cosmic Duality", venue: "Apparao Galleries", city: "Delhi" },
+    { id: "art-musings-20", year: 2019, kind: "Group exhibition", title: "Art Musings: 20th Anniversary", venue: "Jehangir Art Gallery", city: "Mumbai",
+      text: "The installation ‘The Found & the Made’ (2018) was shown here: natural and man-made objects laid out on a low plinth and in a glass vitrine, alongside a set of framed drawings.",
+      images: ["images/exhibitions/ex-2019-1.jpg", "images/exhibitions/ex-2019-3.jpg", "images/exhibitions/ex-2019-detail.jpg"],
+      works: ["2015-2020-019", "2015-2020-020", "2015-2020-022"] },
+    { id: "the-creator-series", year: 2017, kind: "Solo exhibition", title: "The Creator Series", venue: "Art Musings", city: "Mumbai",
+      text: "A solo exhibition exploring creation and existence." },
+    { id: "india-art-fair", year: 2014, kind: "Art fair", title: "India Art Fair", venue: "Presented by Art Musings", city: "New Delhi" },
+    { id: "camac", year: 2011, kind: "Residency", title: "Artist residency", venue: "Camac Centre d’Art", city: "Marnay, France",
+      text: "A residency in France, followed by a research tour through France, Spain and Italy, supported by a Ratan Tata Foundation travel grant." },
+    { id: "evolution-of-the-species", year: 2010, kind: "Group exhibition", title: "The Evolution of the Species", venue: "ICIA Gallery", city: "Mumbai" },
+    { id: "saffronart", year: 2009, kind: "Online feature", title: "Artist of the Month", venue: "Saffronart", city: "Mumbai" },
+    { id: "hyper-bio-nano-materialism", year: 2007, kind: "Solo exhibition", title: "Hyper-Bio-Nano Materialism", venue: "Max Mueller Bhavan, Museum Gallery", city: "Mumbai",
+      text: "His first solo exhibition. Drawings and watercolours of spacecraft, habitats and hybrid creatures, including reworkings of Michelangelo’s David and The Creation of Adam as androids.",
+      credit: "Catalogue essay by Ranjit Hoskote, ‘Whispering in the Robot’s Ears’",
+      images: ["images/exhibitions/ex-2007-1.jpg"],
+      works: ["2007-002", "2007-005", "2007-009", "2007-013", "2007-017", "2007-020"] }
+  ],
+
+  // Series, newest first. Each groups works from data/works.js by period, medium and year.
+  series: [
+    { id: "oil-on-canvas", title: "Oil on canvas", years: "2024–2025", match: { period: "2021-2025" },
+      intro: "Large oil paintings, up to 96 inches across, alongside a dense pencil drawing of hybrid organisms." },
+    { id: "drawings-2020", title: "Small drawings", years: "2020", match: { period: "2015-2020", category: "Drawings" },
+      intro: "A set of small drawings on paper, most of them 12 × 8 inches." },
+    { id: "the-found-and-the-made", title: "The Found & the Made", years: "2018", match: { period: "2015-2020", category: "Installation" },
+      intro: "Natural and man-made objects laid out in spirals and rows. Shown at Jehangir Art Gallery, Mumbai, in 2019." },
+    { id: "works-on-paper-2015", title: "Works on paper", years: "2015–2017", match: { period: "2015-2020", category: ["Works on paper", "Oil on canvas"] },
+      intro: "Watercolours and works on paper from the years of ‘The Creator Series’ (2017)." },
+    { id: "sculpture", title: "Sculpture", years: "2011–2013", match: { period: "2011-2014", category: "Sculpture" },
+      intro: "Sculptural versions of the hybrid creatures from the drawings." },
+    { id: "drawings-2012", title: "Pencil drawings", years: "2012–2013", match: { period: "2011-2014", category: "Drawings" },
+      intro: "A large body of pencil drawings made after the residency in France." },
+    { id: "watercolours-2011", title: "Watercolours", years: "2011–2014", match: { period: "2011-2014", category: "Works on paper" },
+      intro: "Watercolours and works on paper, some up to 84 inches across." },
+    { id: "bio-craft", title: "Bio-craft and cyber villages", years: "2008–2010", match: { period: "2008-2010" },
+      intro: "Bio-aircraft, cyber villages and cybernetic devices in watercolour and pencil." },
+    { id: "creatures-and-machines", title: "Creatures and machines", years: "2007", match: { period: "2007" },
+      intro: "The year of his first solo show, ‘Hyper-Bio-Nano Materialism’, at Max Mueller Bhavan, Mumbai." },
+    { id: "craft-and-habitats", title: "Craft and habitats", years: "2006", match: { period: "2006" },
+      intro: "Larger watercolours, mostly 30 × 20 inches. The craft begin to read as buildings and places to live." },
+    { id: "small-watercolours", title: "Small watercolours", years: "2005", match: { period: "2005" },
+      intro: "Each sheet holds a single floating craft built from patterned parts." },
+    { id: "line-drawings", title: "Line drawings", years: "2004", match: { period: "2004" },
+      intro: "The earliest sheets in the archive: small outlined forms in rows, like lines of an invented script." }
+  ],
+
   // About page: a short biography on the left, the résumé on the right.
   bio: [
     "Ajay Dhandre (b. 1977) works in drawing, watercolour, oil and sculpture. His work explores the meeting of the organic and the mechanical: spacecraft, habitats, cyborgs and hybrid organisms, drawn as specimens of possible futures.",

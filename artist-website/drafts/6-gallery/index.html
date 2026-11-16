@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ajay Dhandre. About, exhibitions, works and contact.">
+<title>Ajay Dhandre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--CONTENT-->
+<a class="splash" id="v-enter" href="#about" aria-label="Enter the website">
+  <div class="in"><h1 data-artist></h1><p>Enter</p></div>
+</a>
+
+<div id="site" hidden>
+  <header class="head">
+    <div class="wrap">
+      <a class="name" href="#enter" data-artist></a>
+      <nav class="menu" aria-label="Main">
+        <a href="#about">About</a>
+        <div class="dd">
+          <button type="button" id="dd-btn" aria-expanded="false" aria-controls="dd-panel">Exhibitions</button>
+          <div class="dd-panel" id="dd-panel" hidden></div>
+        </div>
+        <a href="#works">Works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="v-about" aria-label="About" hidden>
+      <img class="banner" id="a-banner" alt="">
+      <div class="wrap"><div class="about" id="about"></div></div>
+    </section>
+    <section id="v-exhibitions" aria-label="Exhibitions" hidden>
+      <div class="wrap"><h1 class="pg-h">Exhibitions</h1><ul class="ex-index" id="ex-index"></ul></div>
+    </section>
+    <section id="v-exhibition" aria-label="Exhibition" hidden>
+      <div class="wrap ex-page" id="ex-page"></div>
+    </section>
+    <section id="v-works" aria-label="Works" hidden>
+      <div class="wrap" id="strips"><h1 class="pg-h">Works</h1></div>
+    </section>
+    <section id="v-contact" aria-label="Contact" hidden>
+      <div class="wrap contact">
+        <h1 class="pg-h">Contact</h1>
+        <p>For exhibitions, acquisitions, commissions and press, write to the artist.</p>
+        <p class="email" id="c-email"></p>
+        <p id="c-loc"></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog class="lb" id="lb" aria-label="Image viewer">
+  <div class="lb-in">
+    <div class="lb-top"><button type="button" id="lb-close">Close</button></div>
+    <div class="lb-stage"><img id="lb-img" alt=""></div>
+    <div class="lb-bot"><p id="lb-cap"></p><p class="step"><button type="button" id="lb-prev">Previous</button><span id="lb-count"></span><button type="button" id="lb-next">Next</button></p></div>
+  </div>
+</dialog>
+<!--/CONTENT-->
+<script>window.SITE_BASE = "../../";</script>
+<script src="../../data/site.js"></script>
+<script src="../../data/works.js"></script>
+<script src="../common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
