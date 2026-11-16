@@ -26,10 +26,11 @@ ul { list-style: none; }
 
 /* Entrance */
 .splash { position: fixed; inset: 0; display: grid; place-items: center; text-decoration: none; background: #222 center / cover no-repeat; }
-.splash::before { content: ""; position: absolute; inset: 0; background: rgba(16, 20, 19, .5); }
+.splash::before { content: ""; position: absolute; inset: 0; background: rgba(16, 20, 19, .38); }
 .splash h1, .splash p { text-shadow: 0 1px 18px rgba(0, 0, 0, .45); }
 .splash .in { position: relative; text-align: center; color: #F4F6F5; padding: 0 20px; }
 .splash h1 { font-weight: 500; font-size: clamp(2rem, 7vw, 4.6rem); letter-spacing: .18em; text-transform: uppercase; line-height: 1.1; }
+.enter-cap { position: absolute; left: max(20px, env(safe-area-inset-left, 0px)); bottom: max(18px, env(safe-area-inset-bottom, 0px)); right: 20px; color: #F4F6F5; font-size: .8rem; opacity: .85; text-shadow: 0 1px 10px rgba(0, 0, 0, .5); }
 .splash p { margin-top: 18px; font-size: .9rem; letter-spacing: .3em; text-transform: uppercase; opacity: .9; }
 
 /* Header */
