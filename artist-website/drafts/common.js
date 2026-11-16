@@ -43,5 +43,20 @@ window.D = (function () {
     }
     window.addEventListener("hashchange", go); go();
   }
-  return { S: S, W: W, byId: byId, src: src, el: el, $: $, seriesWorks: seriesWorks, seriesOf: seriesOf, title: title, alt: alt, caption: caption, img: img, resume: resume, router: router };
+  // Pictures for an exhibition: installation views first, then the listed works under their label.
+  function exhibitionMedia(x) {
+    var views = (x.images || []).map(function (p) { return { src: p, alt: "Installation view, " + x.title + ", " + x.venue,
+      cap: function (n) { n.textContent = "Installation view, " + x.title + ", " + x.venue + ", " + x.city + ", " + x.year; } }; });
+    var works = (x.works || []).map(function (k) { return byId[k]; }).filter(Boolean).map(function (w) {
+      return { src: w.src, alt: alt(w), w: w.w, h: w.h, cap: function (n) { caption(n, w); } }; });
+    return { views: views, works: works, label: x.worksLabel || "Works" };
+  }
+  function quotesFor(showId) { return (S.critics || []).filter(function (q) { return q.show === showId; }); }
+  function leadQuotes() { return (S.critics || []).filter(function (q) { return q.lead; }); }
+  function quoteEl(q, cls) {
+    var b = el("blockquote", cls || "q"); b.appendChild(el("p", "q-text", "“" + q.quote + "”"));
+    var f = el("footer", "q-by"); f.appendChild(el("b", null, q.by)); f.appendChild(el("span", null, q.source)); b.appendChild(f);
+    return b;
+  }
+  return { exhibitionMedia: exhibitionMedia, quotesFor: quotesFor, leadQuotes: leadQuotes, quoteEl: quoteEl, S: S, W: W, byId: byId, src: src, el: el, $: $, seriesWorks: seriesWorks, seriesOf: seriesOf, title: title, alt: alt, caption: caption, img: img, resume: resume, router: router };
 })();

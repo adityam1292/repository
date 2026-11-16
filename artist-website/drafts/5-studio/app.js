@@ -20,12 +20,16 @@
   function restart() { if (reduce) return; clearInterval(timer); timer = setInterval(function () { show((cur + 1) % slides.length); }, 5000); }
   show(0); restart();
 
-  // ----- Home lists
+  // ----- Critics on the home page
+  D.leadQuotes().forEach(function (q) { $("q-home").appendChild(D.quoteEl(q)); });
+
+  // ----- Home lists (each opens its exhibition page)
   function showItem(x) {
-    var li = el("li"); var p = el("p"); p.appendChild(el("b", null, x.title)); li.appendChild(p);
+    var li = el("li"); var p = el("p"); var a = el("a", null, x.title); a.href = "#show/" + x.id; var b = el("b"); b.appendChild(a); p.appendChild(b); li.appendChild(p);
     li.appendChild(el("p", null, x.venue + ", " + x.city));
     if (x.credit) li.appendChild(el("p", "sub", x.credit));
     li.appendChild(el("p", "sub", x.dates || String(x.year)));
+    var v = el("a", "view-l", "view"); v.href = "#show/" + x.id; li.appendChild(v);
     return li;
   }
   S.exhibitions.forEach(function (x) {
@@ -78,6 +82,26 @@
     if (e.key === "ArrowRight") location.hash = $("p-next").getAttribute("href");
   });
 
+  // ----- Exhibition page
+  function renderShow(id) {
+    var x = S.exhibitions.find(function (e) { return e.id === id; }); if (!x) { location.hash = "#home"; return; }
+    var r = $("show"); r.textContent = "";
+    var back = el("a", "crumb", "← Exhibitions"); back.href = "#home"; r.appendChild(back);
+    r.appendChild(el("h1", "show-t", x.title));
+    var cap = el("div", "work-cap"); cap.appendChild(el("p", null, x.venue + ", " + x.city)); cap.appendChild(el("p", null, x.dates || String(x.year))); cap.appendChild(el("p", "sub", x.kind)); r.appendChild(cap);
+    if (x.text) r.appendChild(el("p", "work-note", x.text));
+    if (x.credit) r.appendChild(el("p", "work-note", x.credit));
+    var qs = D.quotesFor(x.id); if (qs.length) { var g = el("div", "q-grid show-q"); qs.forEach(function (q) { g.appendChild(D.quoteEl(q)); }); r.appendChild(g); }
+    var m = D.exhibitionMedia(x);
+    m.views.forEach(function (it) { var f = el("figure", "view"); f.appendChild(D.img(it.src, it.alt)); var c = el("figcaption"); it.cap(c); f.appendChild(c); r.appendChild(f); });
+    if (m.works.length) {
+      r.appendChild(el("h2", "label show-l", m.label));
+      var gr = el("div", "grid");
+      (x.works || []).forEach(function (k) { var w = D.byId[k]; if (!w) return; var a = el("a", "card"); a.href = "#piece/" + w.id; var ph = el("div", "ph"); ph.appendChild(D.img(w.src, D.alt(w))); a.appendChild(ph); a.appendChild(el("p", "t", D.title(w))); a.appendChild(el("p", "y", String(w.year))); gr.appendChild(a); });
+      r.appendChild(gr);
+    }
+  }
+
   // ----- Biography, texts, contact
   $("b-img").src = D.src(S.contact.image || "images/about/portrait.jpg");
   S.bio.forEach(function (t) { $("b-txt").appendChild(el("p", null, t)); });
@@ -85,12 +109,12 @@
   $("st-title").textContent = S.statement.title;
   S.statement.text.forEach(function (t) { $("st-body").appendChild(el("p", null, t)); });
   $("st-by").textContent = S.statement.by;
-  S.texts.forEach(function (t) { var li = el("li"); var p = el("p"); p.appendChild(el("b", null, t.title)); li.appendChild(p); li.appendChild(el("p", null, t.author + ". " + t.where + ".")); $("texts-list").appendChild(li); });
+  (S.critics || []).forEach(function (q) { $("texts-list").appendChild(D.quoteEl(q)); });
   $("c-email").textContent = S.contact.email; $("c-loc").textContent = S.contact.location;
 
   var noop = function () {};
-  D.router({ home: noop, work: noop, piece: renderPiece, biography: noop, texts: noop, contact: noop }, "home", function (page) {
-    var curPage = page === "piece" ? "work" : page;
+  D.router({ home: noop, work: noop, piece: renderPiece, show: renderShow, biography: noop, texts: noop, contact: noop }, "home", function (page) {
+    var curPage = page === "piece" ? "work" : page === "show" ? "home" : page;
     document.querySelectorAll(".menu a").forEach(function (a) { if (a.getAttribute("href") === "#" + curPage) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   });
 })();

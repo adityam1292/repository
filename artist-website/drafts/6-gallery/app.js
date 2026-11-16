@@ -28,6 +28,8 @@
   ab.appendChild(el("h1", null, "About"));
   S.statement.text.forEach(function (t) { ab.appendChild(el("p", null, t)); });
   ab.appendChild(el("p", "sig", S.statement.by + ", from ‘" + S.statement.title + "’"));
+  ab.appendChild(el("h2", null, "What critics have said"));
+  var qg = el("div", "q-grid"); D.leadQuotes().forEach(function (q) { qg.appendChild(D.quoteEl(q)); }); ab.appendChild(qg);
   ab.appendChild(el("h2", null, "Biography"));
   S.bio.forEach(function (t) { ab.appendChild(el("p", null, t)); });
 
@@ -42,13 +44,17 @@
     var x = S.exhibitions[i], pg = $("ex-page"); pg.textContent = "";
     var h = el("div", "ex-head"); h.appendChild(el("p", "meta", x.kind + " · " + x.year)); h.appendChild(el("h1", null, x.title)); h.appendChild(el("p", "meta", [x.venue, x.city, x.dates].filter(Boolean).join(", "))); pg.appendChild(h);
     var t = el("div", "ex-text"); if (x.text) t.appendChild(el("p", null, x.text)); if (x.credit) t.appendChild(el("p", "credit", x.credit)); if (t.childNodes.length) pg.appendChild(t);
-    var list = (x.images || []).map(function (p) { return { src: p, alt: "Installation view, " + x.title, cap: function (n) { n.textContent = "Installation view, " + x.title + ", " + x.venue + ", " + x.city + ", " + x.year; } }; })
-      .concat((x.works || []).map(function (k) { return D.byId[k]; }).filter(Boolean).map(workItem));
-    if (list.length) {
+    var qs = D.quotesFor(x.id); if (qs.length) { var qg = el("div", "q-grid"); qs.forEach(function (q) { qg.appendChild(D.quoteEl(q)); }); pg.appendChild(qg); }
+    var m = D.exhibitionMedia(x), list = m.views.concat(m.works);
+    function group(items, label, offset, wideFirst) {
+      if (!items.length) return;
+      pg.appendChild(el("h2", "ex-label", label));
       var g = el("div", "ex-imgs");
-      list.forEach(function (it, k) { var b = el("button"); b.type = "button"; if (k === 0) b.className = "wide"; b.setAttribute("aria-label", it.alt); b.appendChild(D.img(it.src, it.alt)); b.onclick = function () { open(list, k); }; g.appendChild(b); });
+      items.forEach(function (it, k) { var b = el("button"); b.type = "button"; if (wideFirst && k === 0) b.className = "wide"; b.setAttribute("aria-label", it.alt); b.appendChild(D.img(it.src, it.alt)); b.onclick = function () { open(list, offset + k); }; g.appendChild(b); });
       pg.appendChild(g);
     }
+    group(m.views, "Installation views", 0, true);
+    group(m.works, m.label, m.views.length, false);
     var nav = el("nav", "ex-pn"), p = S.exhibitions[i - 1], n = S.exhibitions[i + 1];
     var pa = el("a", null, p ? "← " + p.title + " (" + p.year + ")" : ""); pa.href = p ? "#exhibition/" + p.id : "#exhibitions";
     var na = el("a", null, n ? n.title + " (" + n.year + ") →" : ""); na.href = n ? "#exhibition/" + n.id : "#exhibitions";

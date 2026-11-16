@@ -43,11 +43,24 @@ main { padding-bottom: 80px; }
 .ex .kind { font-family: var(--display); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
 .ex .txt { margin-top: 12px; max-width: 62ch; }
 .ex .credit { margin-top: 10px; font-weight: 600; color: var(--ink); font-size: .9rem; }
-.thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
 .thumbs button { width: 150px; height: 112px; background: #EFEEE9; overflow: hidden; }
 .thumbs img { width: 100%; height: 100%; object-fit: cover; transition: opacity .2s; }
 .thumbs button:hover img { opacity: .82; }
 .ex .more { display: inline-block; margin-top: 14px; font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+
+/* Critics' words */
+.q-band { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 56px; max-width: 980px; margin: 4px auto 56px; padding: 38px 0 42px; border-block: 1px solid var(--rule); }
+.q { margin: 0; display: grid; gap: 14px; align-content: start; }
+.q .q-text { font-family: var(--display); font-weight: 300; font-size: 1.45rem; line-height: 1.35; color: var(--ink); text-wrap: pretty; }
+.q .q-by b { display: block; font-family: var(--display); font-weight: 500; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+.q .q-by span { display: block; font-size: .85rem; color: var(--muted); }
+.q.small { margin-top: 18px; padding-left: 16px; border-left: 2px solid var(--rule); gap: 6px; }
+.q.small .q-text { font-size: 1.05rem; font-weight: 400; font-style: italic; font-family: var(--body); color: var(--text); }
+.q-list { display: grid; gap: 34px; }
+.media { margin-top: 18px; }
+.media-label { font-family: var(--display); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.media .thumbs { margin-top: 8px; }
 
 /* Works: series grid (masonry) */
 .series-grid { columns: 3 260px; column-gap: 28px; }
@@ -100,6 +113,8 @@ dialog.lb::backdrop { background: var(--bg); }
 .lb-btn { font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
 
 @media (max-width: 700px) {
+  .q-band { grid-template-columns: minmax(0, 1fr); padding: 26px 0 30px; }
+  .q .q-text { font-size: 1.2rem; }
   .head { padding-block: 28px 24px; }
   .series-grid, .work-grid { columns: 2 140px; column-gap: 14px; }
   .thumbs button { width: calc(50% - 5px); }

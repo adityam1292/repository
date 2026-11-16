@@ -11,22 +11,29 @@
   lb.addEventListener("keydown", function (e) { if (e.key === "ArrowLeft") step(-1); if (e.key === "ArrowRight") step(1); });
   function workItem(w) { return { src: w.src, alt: D.alt(w), cap: function (n) { D.caption(n, w); } }; }
 
+  // ----- Critics band at the top of the exhibitions page
+  var band = $("q-band"); D.leadQuotes().forEach(function (q) { band.appendChild(D.quoteEl(q)); });
+
   // ----- Exhibitions archive
+  function thumbRow(list, label, all, offset) {
+    var wrap = el("div", "media");
+    if (label) wrap.appendChild(el("p", "media-label", label));
+    var t = el("div", "thumbs");
+    list.forEach(function (it, i) { var b = el("button"); b.type = "button"; b.setAttribute("aria-label", it.alt); b.appendChild(D.img(it.src, "")); b.onclick = function () { open(all, offset + i); }; t.appendChild(b); });
+    wrap.appendChild(t); return wrap;
+  }
   S.exhibitions.forEach(function (x) {
-    var a = el("article", "ex");
+    var a = el("article", "ex"); a.id = "ex-" + x.id;
     a.appendChild(el("h2", null, x.venue + " (" + x.year + ")"));
     a.appendChild(el("p", "t", x.title));
     a.appendChild(el("p", "meta", [x.dates, x.city].filter(Boolean).join(", ")));
     a.appendChild(el("p", "kind", x.kind));
     if (x.text) a.appendChild(el("p", "txt", x.text));
     if (x.credit) a.appendChild(el("p", "credit", x.credit));
-    var list = (x.images || []).map(function (p) { return { src: p, alt: "Installation view, " + x.title + ", " + x.venue, cap: function (n) { n.textContent = "Installation view, " + x.title + ", " + x.venue + ", " + x.city + ", " + x.year; } }; })
-      .concat((x.works || []).map(function (id) { return D.byId[id]; }).filter(Boolean).map(workItem));
-    if (list.length) {
-      var t = el("div", "thumbs");
-      list.forEach(function (it, i) { var b = el("button"); b.type = "button"; b.setAttribute("aria-label", it.alt); b.appendChild(D.img(it.src, "")); b.onclick = function () { open(list, i); }; t.appendChild(b); });
-      a.appendChild(t);
-    }
+    D.quotesFor(x.id).filter(function (q) { return !q.lead; }).forEach(function (q) { a.appendChild(D.quoteEl(q, "q small")); });
+    var m = D.exhibitionMedia(x), all = m.views.concat(m.works);
+    if (m.views.length) a.appendChild(thumbRow(m.views, "Installation views", all, 0));
+    if (m.works.length) a.appendChild(thumbRow(m.works, m.label, all, m.views.length));
     $("ex-list").appendChild(a);
   });
 
@@ -58,7 +65,7 @@
   $("st-title").textContent = S.statement.title;
   S.statement.text.forEach(function (t) { $("st-body").appendChild(el("p", null, t)); });
   $("st-by").textContent = S.statement.by;
-  S.texts.forEach(function (t) { var li = el("li"); li.appendChild(el("p", "src", t.author + ", ‘" + t.title + "’. " + t.where + ".")); if (t.excerpt) li.appendChild(el("p", "q", "“" + t.excerpt + "”")); $("texts-list").appendChild(li); });
+  (S.critics || []).forEach(function (q) { $("texts-list").appendChild(D.quoteEl(q, q.lead ? "q" : "q small")); });
   D.resume($("cv"), S);
   $("c-email").textContent = S.contact.email; $("c-loc").textContent = S.contact.location;
 

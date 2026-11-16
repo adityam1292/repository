@@ -53,6 +53,30 @@ main { padding-top: calc(var(--head-h) + 8px); padding-bottom: 64px; min-height:
 .shows b { color: var(--ink); font-weight: 700; }
 .shows .sub { color: var(--muted); font-size: .95rem; }
 
+/* Critics */
+.writing { margin-top: 52px; }
+.writing .label { margin-bottom: 20px; }
+.q-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 48px; }
+.q { margin: 0; display: grid; gap: 12px; align-content: start; }
+.q .q-text { font-family: var(--serif); font-style: italic; font-size: 1.45rem; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
+.q .q-by b { display: block; font-family: var(--mono); font-weight: 700; font-size: .82rem; text-transform: uppercase; color: var(--ink); }
+.q .q-by span { display: block; font-size: .92rem; color: var(--muted); }
+.q-list { display: grid; gap: 36px; }
+.shows b a { text-decoration: none; }
+.view-l { font-family: var(--mono); font-size: .8rem; text-transform: lowercase; color: var(--ink); }
+.view-l:hover { text-decoration: none; }
+.shows b a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Exhibition page */
+.show-t { font-weight: 700; color: var(--ink); font-size: 1.8rem; line-height: 1.2; }
+.show .work-cap { margin-top: 10px; }
+.show .sub { color: var(--muted); }
+.show-q { margin-top: 34px; }
+.view { margin: 34px 0 0; }
+.view img { width: 100%; height: auto; }
+.view figcaption { margin-top: 10px; color: var(--muted); font-size: .95rem; }
+.show-l { margin: 44px 0 20px; }
+
 /* Works grid */
 .filters { display: flex; gap: 12px 28px; flex-wrap: wrap; margin: 6px 0 30px; }
 .filters label { display: flex; align-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: .82rem; text-transform: uppercase; }
@@ -105,6 +129,8 @@ main { padding-top: calc(var(--head-h) + 8px); padding-bottom: 64px; min-height:
   .menu a { font-size: .8rem; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 14px; }
   .bio { grid-template-columns: minmax(0, 1fr); }
+  .q-grid { grid-template-columns: minmax(0, 1fr); }
+  .q .q-text { font-size: 1.2rem; }
   body { font-size: 17px; }
 }
 @media (prefers-reduced-motion: reduce) { .banner img, .card img { transition: none; } }
