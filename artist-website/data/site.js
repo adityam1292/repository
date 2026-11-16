@@ -25,6 +25,13 @@ window.SITE = {
       intro: "Large oil paintings, up to 96 inches across, alongside dense pencil drawings of hybrid organisms." }
   ],
 
+  // Draft 6: the full-screen entrance image and where to centre it on narrow screens.
+  gallery: {
+    entrance: "images/home/found-and-made.jpg",
+    entranceTitle: "The Found & the Made, 2018. Natural and man-made objects on canvas, 64 × 115 in",
+    entranceFocus: "58% 38%"
+  },
+
   // Exhibitions, newest first. Used by the exhibition-led drafts (4, 5 and 6).
   // "images" are installation views in images/exhibitions/. "works" lists artwork ids from data/works.js.
   exhibitions: [

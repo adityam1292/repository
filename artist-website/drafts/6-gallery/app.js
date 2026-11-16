@@ -3,6 +3,8 @@
   document.querySelectorAll("[data-artist]").forEach(function (n) { n.textContent = S.artist; });
   var G = S.gallery || {};
   $("v-enter").style.backgroundImage = "url('" + D.src(G.entrance || "images/exhibitions/ex-2019-1.jpg") + "')";
+  if (G.entranceFocus) $("v-enter").style.backgroundPosition = G.entranceFocus;
+  if (G.entranceTitle) $("enter-cap").textContent = G.entranceTitle;
 
   // ----- Viewer
   var lb = $("lb"), items = [], at = 0;
