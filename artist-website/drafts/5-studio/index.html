@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ajay Dhandre. Work, biography, texts and contact.">
+<title>Ajay Dhandre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@400;700&family=Spectral:ital,wght@0,400;0,700;1,400&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--CONTENT-->
+<header class="head">
+  <div class="wrap">
+    <a class="mark" href="#home" data-artist></a>
+    <nav class="menu" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#biography">Biography</a>
+      <a href="#texts">Texts</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section id="v-home" aria-label="Home">
+    <div class="wrap">
+      <div class="banner" id="banner" aria-label="Selected works"></div>
+      <div class="dots" id="dots"></div>
+      <div class="writing" aria-label="What critics have said"><h2 class="label">Writing</h2><div class="q-grid" id="q-home"></div></div>
+      <div class="lists">
+        <div><h2 class="label">Selected solo exhibitions</h2><ul class="shows" id="solo"></ul></div>
+        <div><h2 class="label">Selected group exhibitions</h2><ul class="shows" id="group"></ul></div>
+        <div><h2 class="label">Residency</h2><ul class="shows" id="res"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-work" aria-label="Work" hidden>
+    <div class="wrap">
+      <div class="filters">
+        <label for="f-medium">Filter by medium <select id="f-medium"><option value="">All</option></select></label>
+        <label for="f-year">Filter by year <select id="f-year"><option value="">All</option></select></label>
+      </div>
+      <p class="count" id="count"></p>
+      <div class="grid" id="grid"></div>
+      <button class="loadmore" type="button" id="more">Load more</button>
+    </div>
+  </section>
+
+  <section id="v-piece" aria-label="Artwork" hidden>
+    <div class="wrap">
+      <a class="crumb" href="#work">← Work</a>
+      <div class="work-img"><img id="p-img" alt=""></div>
+      <div class="work-cap"><p class="t" id="p-title"></p><p id="p-year"></p><p id="p-medium"></p><p id="p-size"></p></div>
+      <p class="work-note" id="p-note"></p>
+      <nav class="post-nav" aria-label="Artworks"><a id="p-prev" href="#work">Previous artwork</a><a id="p-next" href="#work">Next artwork</a></nav>
+    </div>
+  </section>
+
+  <section id="v-show" aria-label="Exhibition" hidden>
+    <div class="wrap show" id="show"></div>
+  </section>
+
+  <section id="v-biography" aria-label="Biography" hidden>
+    <div class="wrap">
+      <h1 class="page-h">Biography</h1>
+      <div class="bio"><img id="b-img" alt="Ajay Dhandre in front of one of his drawings" loading="lazy"><div class="txt" id="b-txt"></div></div>
+      <div class="cv" id="cv"></div>
+    </div>
+  </section>
+
+  <section id="v-texts" aria-label="Texts" hidden>
+    <div class="wrap texts">
+      <div><h1 class="page-h" id="st-title"></h1><div class="body" id="st-body"></div><p class="by" id="st-by"></p></div>
+      <div><h2 class="page-h">What critics have said</h2><div class="q-list" id="texts-list"></div></div>
+    </div>
+  </section>
+
+  <section id="v-contact" aria-label="Contact" hidden>
+    <div class="wrap contact">
+      <h1 class="page-h">Contact</h1>
+      <p>For exhibitions, acquisitions and press:</p>
+      <p class="email" id="c-email"></p>
+      <p id="c-loc"></p>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div class="wrap">© <span data-artist></span>, <span id="yr"></span></div></footer>
+<!--/CONTENT-->
+<script>window.SITE_BASE = "../../";</script>
+<script src="../../data/site.js"></script>
+<script src="../../data/works.js"></script>
+<script src="../common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

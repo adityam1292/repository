@@ -1,0 +1,123 @@
+/* Draft 6 — "Gallery". After suneelmamadapur.com: a full-screen gallery photograph with the name
+   as the entrance, then a soft sage ground, an Exhibitions drop-down, and a long first-person About. */
+:root {
+  --bg: #D7E0DF;          /* sage ground */
+  --panel: #E6ECEB;
+  --ink: #161A19;
+  --text: #2A302F;
+  --muted: #5E6A68;
+  --rule: #B9C6C4;
+  --font: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --gutter-l: max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.65; }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+h1, h2, h3, p, ul { margin: 0; padding: 0; font-weight: normal; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.wrap { max-width: 1200px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* Entrance */
+.splash { position: fixed; inset: 0; display: grid; place-items: center; text-decoration: none; background: #222 center / cover no-repeat; }
+.splash::before { content: ""; position: absolute; inset: 0; background: rgba(16, 20, 19, .5); }
+.splash h1, .splash p { text-shadow: 0 1px 18px rgba(0, 0, 0, .45); }
+.splash .in { position: relative; text-align: center; color: #F4F6F5; padding: 0 20px; }
+.splash h1 { font-weight: 500; font-size: clamp(2rem, 7vw, 4.6rem); letter-spacing: .18em; text-transform: uppercase; line-height: 1.1; }
+.splash p { margin-top: 18px; font-size: .9rem; letter-spacing: .3em; text-transform: uppercase; opacity: .9; }
+
+/* Header */
+.head .wrap { display: flex; justify-content: space-between; align-items: center; gap: 10px 28px; flex-wrap: wrap; padding-block: 22px; }
+.name { font-weight: 500; font-size: 1.55rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.menu { display: flex; align-items: center; gap: 6px 28px; flex-wrap: wrap; }
+.menu > a, .menu > .dd > button { font-size: .98rem; color: var(--ink); text-decoration: none; }
+.menu a[aria-current="page"], .dd button[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+.dd { position: relative; }
+.dd > button::after { content: " ▾"; font-size: .8em; }
+.dd-panel { position: absolute; right: 0; top: calc(100% + 10px); z-index: 20; min-width: 300px; background: var(--panel); border: 1px solid var(--rule); padding: 8px 0; box-shadow: 0 10px 30px -18px rgba(0,0,0,.35); }
+.dd-panel a { display: flex; justify-content: space-between; gap: 18px; padding: 7px 16px; text-decoration: none; color: var(--text); font-size: .92rem; }
+.dd-panel a:hover { background: var(--bg); color: var(--ink); }
+.dd-panel .y { color: var(--muted); font-variant-numeric: tabular-nums; }
+main { padding-bottom: 80px; }
+
+/* About */
+.banner { width: 100%; height: min(56vh, 560px); object-fit: cover; }
+.about { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1em; max-width: 72ch; margin: 44px auto 0; }
+.about h1, .pg-h { font-weight: 500; font-size: 2rem; color: var(--ink); margin-bottom: .2em; }
+.about .sig { color: var(--muted); }
+.about h2 { font-weight: 500; font-size: 1.25rem; color: var(--ink); margin-top: 1.2em; }
+
+/* Critics */
+.q-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 40px; margin-block: 6px 10px; }
+.q { margin: 0; display: grid; gap: 12px; align-content: start; padding: 24px; background: var(--panel); }
+.q .q-text { font-size: 1.3rem; line-height: 1.4; color: var(--ink); text-wrap: pretty; }
+.q .q-by b { display: block; font-weight: 600; color: var(--ink); }
+.q .q-by span { display: block; font-size: .9rem; color: var(--muted); }
+.about .q-grid { margin-top: .3em; }
+
+/* Exhibitions */
+.ex-index li a { display: grid; grid-template-columns: 4.5em minmax(0, 1fr) auto; gap: 4px 18px; padding: 16px 0; border-bottom: 1px solid var(--rule); text-decoration: none; align-items: baseline; }
+.ex-index li:first-child a { border-top: 1px solid var(--rule); }
+.ex-index .y { font-variant-numeric: tabular-nums; color: var(--muted); }
+.ex-index .t { color: var(--ink); font-size: 1.1rem; }
+.ex-index .v { color: var(--muted); font-size: .92rem; text-align: right; }
+.ex-index a:hover .t { text-decoration: underline; text-underline-offset: 4px; }
+.ex-page { display: grid; gap: 28px; }
+.ex-head { display: grid; gap: 4px; }
+.ex-head h1 { font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--ink); line-height: 1.15; }
+.ex-head .meta { color: var(--muted); }
+.ex-text { max-width: 66ch; display: grid; gap: .8em; }
+.ex-text .credit { color: var(--ink); }
+.ex-imgs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.ex-imgs button { display: block; cursor: zoom-in; }
+.ex-imgs img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
+.ex-imgs .wide { grid-column: 1 / -1; }
+.ex-imgs .wide img { aspect-ratio: auto; height: auto; }
+.ex-imgs img { object-fit: contain; background: var(--panel); }
+.ex-imgs .wide img { object-fit: cover; }
+.ex-label { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: -14px; }
+.ex-pn { display: flex; justify-content: space-between; gap: 12px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.ex-pn a { text-decoration: none; color: var(--ink); }
+.ex-pn a:hover { text-decoration: underline; }
+
+/* Works: one filmstrip per series */
+.strip-sec { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 24px; padding-block: 30px; border-top: 1px solid var(--rule); }
+.strip-sec:first-of-type { border-top: 0; }
+.strip-info h2 { font-weight: 500; font-size: 1.2rem; color: var(--ink); line-height: 1.25; }
+.strip-info .y { color: var(--muted); margin-top: 2px; }
+.strip-info p.i { margin-top: 10px; font-size: .92rem; }
+.strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 10px; min-width: 0; }
+.strip button { flex: none; scroll-snap-align: start; cursor: zoom-in; }
+.strip img { height: 260px; width: auto; max-width: none; }
+
+/* Contact */
+.contact { display: grid; gap: 8px; max-width: 60ch; }
+.contact .email { font-size: 1.15rem; color: var(--ink); overflow-wrap: anywhere; }
+
+/* Viewer */
+dialog.lb { border: 0; padding: 0; width: 100%; max-width: 100vw; height: 100%; max-height: 100vh; background: var(--bg); color: var(--text); }
+dialog.lb::backdrop { background: var(--bg); }
+.lb-in { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; padding: max(16px, env(safe-area-inset-top, 0px)) var(--gutter-r) max(16px, env(safe-area-inset-bottom, 0px)) var(--gutter-l); }
+.lb-top { display: flex; justify-content: flex-end; }
+.lb-stage { position: relative; min-height: 0; }
+.lb-stage img { position: absolute; inset: 0; margin: auto; max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.lb-bot { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 24px; flex-wrap: wrap; }
+.lb-bot .step { display: flex; gap: 18px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--muted); }
+.lb-bot button, .lb-top button { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+@media (max-width: 760px) {
+  .strip-sec { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+  .strip img { height: 200px; }
+  .ex-imgs { grid-template-columns: minmax(0, 1fr); }
+  .q-grid { grid-template-columns: minmax(0, 1fr); }
+  .q .q-text { font-size: 1.12rem; }
+  .ex-index li a { grid-template-columns: 3.6em minmax(0, 1fr); }
+  .ex-index .v { grid-column: 2; text-align: left; }
+  .dd-panel { left: 0; right: auto; min-width: min(300px, calc(100vw - 40px)); }
+}

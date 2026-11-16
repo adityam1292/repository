@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ajay Dhandre. Exhibitions, works, texts and CV.">
+<title>Ajay Dhandre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!--CONTENT-->
+<div class="wrap">
+  <header class="head">
+    <a class="name" href="#exhibitions" data-artist></a>
+    <nav class="menu" aria-label="Main">
+      <a href="#exhibitions">Exhibitions</a>
+      <a href="#works">Works</a>
+      <a href="#texts">Texts</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section id="v-exhibitions" aria-label="Exhibitions">
+      <div class="q-band" id="q-band" aria-label="What critics have said"></div>
+      <div class="ex-list" id="ex-list"></div>
+    </section>
+    <section id="v-works" aria-label="Works" hidden><div class="series-grid" id="series-grid"></div></section>
+    <section id="v-series" aria-label="Series" hidden>
+      <a class="back" href="#works">← All works</a>
+      <div class="series-head"><h1 id="s-title"></h1><p class="yrs" id="s-years"></p><p id="s-intro"></p></div>
+      <div class="work-grid" id="s-grid"></div>
+      <nav class="series-nav" aria-label="Series"><a id="s-prev"></a><a id="s-next"></a></nav>
+    </section>
+    <section id="v-texts" aria-label="Texts" hidden>
+      <div class="narrow texts">
+        <div><h2 id="st-title"></h2><div class="body" id="st-body"></div><p class="by" id="st-by"></p></div>
+        <div><h2>What critics have said</h2><div class="q-list" id="texts-list"></div></div>
+      </div>
+    </section>
+    <section id="v-cv" aria-label="CV" hidden><div class="narrow cv" id="cv"></div></section>
+    <section id="v-contact" aria-label="Contact" hidden>
+      <div class="narrow contact">
+        <p>For exhibitions, acquisitions and press, write to the artist.</p>
+        <p class="email" id="c-email"></p>
+        <p id="c-loc"></p>
+      </div>
+    </section>
+  </main>
+</div>
+<dialog class="lb" id="lb" aria-label="Image viewer">
+  <div class="lb-in">
+    <div class="lb-top"><button class="lb-btn" type="button" id="lb-close">Close</button></div>
+    <div class="lb-stage"><img id="lb-img" alt=""></div>
+    <div class="lb-bot"><p id="lb-cap"></p><p class="step"><button class="lb-btn" type="button" id="lb-prev">Previous</button><span id="lb-count"></span><button class="lb-btn" type="button" id="lb-next">Next</button></p></div>
+  </div>
+</dialog>
+<!--/CONTENT-->
+<script>window.SITE_BASE = "../../";</script>
+<script src="../../data/site.js"></script>
+<script src="../../data/works.js"></script>
+<script src="../common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

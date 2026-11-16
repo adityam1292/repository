@@ -1,0 +1,122 @@
+/* Draft 4 — "Archive". After bhartikher.com: off-white ground, quiet grey text,
+   the name in large spaced capitals, exhibitions as the front page, works as a grid of series. */
+:root {
+  --bg: #FCFCFA;
+  --ink: #222222;        /* headings */
+  --text: #575757;       /* body */
+  --muted: #8A8A86;
+  --rule: #E4E3DE;
+  --display: "Jost", "Futura", "Trebuchet MS", sans-serif;
+  --body: "Figtree", "Helvetica Neue", Arial, sans-serif;
+  --gutter-l: max(20px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(20px, env(safe-area-inset-right, 0px));
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.65; }
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+h1, h2, h3, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
+
+/* Header: name, then menu */
+.head { text-align: center; padding-block: 44px 34px; }
+.name { font-family: var(--display); font-weight: 600; font-size: clamp(1.9rem, 4.6vw, 2.7rem); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+.menu { display: flex; justify-content: center; gap: 6px 30px; flex-wrap: wrap; margin-top: 16px; }
+.menu a { font-family: var(--display); font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; color: var(--text); padding-bottom: 3px; border-bottom: 1px solid transparent; }
+.menu a:hover { color: var(--ink); }
+.menu a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
+main { padding-bottom: 80px; }
+.page-title { font-family: var(--display); font-weight: 400; font-size: 1.5rem; letter-spacing: .06em; color: var(--ink); text-transform: uppercase; text-align: center; margin-bottom: 36px; }
+
+/* Exhibitions archive */
+.ex-list { max-width: 760px; margin-inline: auto; display: grid; gap: 0; }
+.ex { padding-block: 34px; border-top: 1px solid var(--rule); }
+.ex:first-child { border-top: 0; padding-top: 0; }
+.ex h2 { font-family: var(--display); font-weight: 300; font-size: 1.5rem; letter-spacing: .06em; color: var(--ink); text-transform: uppercase; line-height: 1.2; }
+.ex .t { font-style: italic; color: var(--ink); font-size: 1.05rem; margin-top: 10px; }
+.ex .meta { margin-top: 2px; }
+.ex .kind { font-family: var(--display); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 12px; }
+.ex .txt { margin-top: 12px; max-width: 62ch; }
+.ex .credit { margin-top: 10px; font-weight: 600; color: var(--ink); font-size: .9rem; }
+.thumbs { display: flex; flex-wrap: wrap; gap: 10px; }
+.thumbs button { width: 150px; height: 112px; background: #EFEEE9; overflow: hidden; }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; transition: opacity .2s; }
+.thumbs button:hover img { opacity: .82; }
+.ex .more { display: inline-block; margin-top: 14px; font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+
+/* Critics' words */
+.q-band { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 56px; max-width: 980px; margin: 4px auto 56px; padding: 38px 0 42px; border-block: 1px solid var(--rule); }
+.q { margin: 0; display: grid; gap: 14px; align-content: start; }
+.q .q-text { font-family: var(--display); font-weight: 300; font-size: 1.45rem; line-height: 1.35; color: var(--ink); text-wrap: pretty; }
+.q .q-by b { display: block; font-family: var(--display); font-weight: 500; font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+.q .q-by span { display: block; font-size: .85rem; color: var(--muted); }
+.q.small { margin-top: 18px; padding-left: 16px; border-left: 2px solid var(--rule); gap: 6px; }
+.q.small .q-text { font-size: 1.05rem; font-weight: 400; font-style: italic; font-family: var(--body); color: var(--text); }
+.q-list { display: grid; gap: 34px; }
+.media { margin-top: 18px; }
+.media-label { font-family: var(--display); font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.media .thumbs { margin-top: 8px; }
+
+/* Works: series grid (masonry) */
+.series-grid { columns: 3 260px; column-gap: 28px; }
+.series-card { display: block; break-inside: avoid; margin-bottom: 34px; text-decoration: none; }
+.series-card img { width: 100%; height: auto; transition: opacity .2s; }
+.series-card:hover img { opacity: .85; }
+.series-card h2 { font-family: var(--display); font-weight: 500; font-size: .86rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin-top: 12px; }
+.series-card p { color: var(--muted); font-size: .85rem; }
+
+/* Series page */
+.series-head { max-width: 640px; margin: 0 auto 38px; text-align: center; }
+.series-head h1 { font-family: var(--display); font-weight: 400; font-size: 1.6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.series-head .yrs { color: var(--muted); margin-top: 4px; }
+.series-head p { margin-top: 14px; }
+.back { display: inline-block; margin-bottom: 26px; font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.back:hover { color: var(--ink); }
+.work-grid { columns: 3 240px; column-gap: 24px; }
+.work { display: block; width: 100%; break-inside: avoid; margin: 0 0 26px; text-align: left; cursor: zoom-in; }
+.work img { width: 100%; height: auto; }
+.work .cap { display: block; margin-top: 7px; font-size: .8rem; color: var(--muted); }
+.series-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.series-nav a { font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+
+/* Texts, CV, contact */
+.narrow { max-width: 680px; margin-inline: auto; }
+.texts { display: grid; gap: 40px; }
+.texts h2 { font-family: var(--display); font-weight: 400; font-size: 1.15rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+.texts .body { display: grid; gap: 1em; }
+.texts .by { color: var(--muted); margin-top: 12px; }
+.texts li + li { margin-top: 22px; }
+.texts .src { color: var(--ink); }
+.texts .q { font-style: italic; margin-top: 6px; }
+.cv { display: grid; gap: 30px; }
+.cv h3 { font-family: var(--display); font-weight: 500; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
+.cv li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 0 1em; padding: 3px 0; }
+.cv .y { font-variant-numeric: tabular-nums; color: var(--ink); }
+.cv-intro { color: var(--ink); }
+.contact { text-align: center; display: grid; gap: 8px; }
+.contact .email { color: var(--ink); font-size: 1.05rem; overflow-wrap: anywhere; }
+
+/* Viewer */
+dialog.lb { border: 0; padding: 0; width: 100%; max-width: 100vw; height: 100%; max-height: 100vh; background: var(--bg); color: var(--text); }
+dialog.lb::backdrop { background: var(--bg); }
+.lb-in { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; padding: max(16px, env(safe-area-inset-top, 0px)) var(--gutter-r) max(16px, env(safe-area-inset-bottom, 0px)) var(--gutter-l); }
+.lb-top { display: flex; justify-content: flex-end; }
+.lb-stage { position: relative; min-height: 0; }
+.lb-stage img { position: absolute; inset: 0; margin: auto; max-width: 100%; max-height: 100%; width: auto; height: auto; }
+.lb-bot { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 24px; flex-wrap: wrap; }
+.lb-bot .step { display: flex; gap: 18px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--muted); }
+.lb-btn { font-family: var(--display); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+
+@media (max-width: 700px) {
+  .q-band { grid-template-columns: minmax(0, 1fr); padding: 26px 0 30px; }
+  .q .q-text { font-size: 1.2rem; }
+  .head { padding-block: 28px 24px; }
+  .series-grid, .work-grid { columns: 2 140px; column-gap: 14px; }
+  .thumbs button { width: calc(50% - 5px); }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
